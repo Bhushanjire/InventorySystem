@@ -1,0 +1,18 @@
+<h4>Add Manufacture</h4>
+<div class="alert alert-success" *ngIf="msg" (click)="hideMsg()">{{message}}</div>
+<form  #manufacture_form="ngForm"  id="manufacture_form_id" (ngSubmit)="manuSubmit(manufacture_form)" novalidate autocomplete="off">
+  <div class="row">
+  <div class="col-sm-1">Name: <span style="color: red">*</span></div>
+  <div class="col-sm-5">
+    <input type="text" class="form-control" id="manufacture_name" placeholder="Enter Manufacture Name" name="manufacture_name"   required #manName='ngModel' ngModel [(ngModel)]='manufacture_name'>
+    <app-customvalidation  [displayError]="manName.invalid && manName.errors.required && 
+    (manName.dirty || manName.touched && manufacture_form.submitted )" errorMsg="Please enter manufacture name"></app-customvalidation>
+  </div>
+
+  <div class="col-sm-5"> <button type="submit" class="btn btn-primary" [disabled]="manufacture_form.invalid">Add</button></div>
+ </div>
+</form>
+
+
+
+

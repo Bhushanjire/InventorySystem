@@ -1,0 +1,77 @@
+  <h2>Inventory</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+          <th width="5%">Sr.No.</th>
+          <th width="45%">Manufacture Name</th>
+          <th width="45%">Model Name</th>
+          <th width="5%">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of inventoryList ; let i=index" (click)="openModelPopup(data.model_id,template)" style="cursor: pointer;">
+        <td>{{i+1}}</td>
+        <td >{{data.manufacture_name}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.TOTAL}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Model Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let data of modelDetail">
+            <div class="row">
+                <div class="col-sm-6"><strong>Manufacture  Name: </strong></div>
+                <div class="col-sm-6">{{data.manufacture_name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6"><strong>Model Name  : </strong></div>
+                <div class="col-sm-6">{{data.name}}</div>
+            </div> 
+            <div class="row">
+                <div class="col-sm-6"><strong>Color  : </strong></div>
+                <div class="col-sm-6">{{data.color}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6"><strong>Manufacture Year : </strong></div>
+                <div class="col-sm-6">{{data.manufacturing_year}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6"><strong>Registration No.  : </strong></div>
+                <div class="col-sm-6">{{data.registration_no}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6"><strong>Note  : </strong></div>
+                <div class="col-sm-6">{{data.note}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6"><strong>Pictures: </strong></div>
+            </div>
+        
+            <div class="row">
+            <div class="col-sm-4">
+                <img src ="http://vegaroma.in/Bhushan_demo/inventory_system/uploads/{{data.picture1}}" style="width:150px;height:150px">
+            </div>
+            <div class="col-sm-4">
+                <img src ="http://vegaroma.in/Bhushan_demo/inventory_system/uploads/{{data.picture2}}" style="width:150px;height:150px">
+            </div>
+            </div>
+            
+        
+            
+        </div>
+
+      </div>
+    </ng-template>
+
+         
+         
+

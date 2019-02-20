@@ -1,0 +1,72 @@
+
+<h4>Add Model</h4>
+<div class="alert alert-success" *ngIf="msg" (click)="hideMsg()">{{message}}</div>
+<form  #model_form="ngForm"  id="model_form_id" (ngSubmit)="modelSubmit(model_form)" novalidate autocomplete="off">
+<div class="row">
+        <div class="col-sm-3"><label for="manufacture_name">Select Manufacture:<span style="color: red">*</span> </label></div>
+        <div class="col-sm-3">
+        <select    class="form-control" id="manufacture_name" name="manufacture_name" ngModel required #manName='ngModel' ngModel [(ngModel)]='manufacture_name'>
+        <option value='' selected>--Select--</option>
+        <option  *ngFor="let data of manufactureList" value="{{data.manufacture_id}}" >{{data.manufacture_name}}</option>
+</select>
+<app-customvalidation [displayError]="manName.invalid && manName.errors.required && 
+    (manName.dirty || manName.touched && model_form.submitted )" errorMsg="Please select manufacture Name"></app-customvalidation>
+</div>
+<div class="col-sm-1"><label for="name">Name:<span style="color: red">*</span> </label> </div>
+  <div class="col-sm-3"><input type="text" class="form-control" id="name" name="name" placeholder="Enter Model Name" ngModel required #modelName='ngModel' [(ngModel)]='name'>
+    <app-customvalidation [displayError]="modelName.invalid && modelName.errors.required && 
+    (modelName.dirty || modelName.touched && model_form.submitted )" errorMsg="Please enter Name"></app-customvalidation>
+  </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Color:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><input type="text" class="form-control" id="color" name="color" placeholder="Enter Model Color" ngModel required #modelColor='ngModel' ngModel [(ngModel)]='color'>
+      <app-customvalidation [displayError]="modelColor.invalid && modelColor.errors.required && 
+      (modelColor.dirty || modelColor.touched && model_form.submitted )" errorMsg="Please enter color"></app-customvalidation>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Manufacturing Year:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><input type="text" class="form-control" id="manufacturing_year" name="manufacturing_year" placeholder="Enter Manufacturing Year" ngModel required #modelYear='ngModel' ngModel [(ngModel)]='manufacturing_year'>
+      <app-customvalidation [displayError]="modelYear.invalid && modelYear.errors.required && 
+      (modelYear.dirty || modelYear.touched && model_form.submitted )" errorMsg="Please enter manufacture year"></app-customvalidation>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Registration No.:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><input type="text" class="form-control" id="registration_no" name="registration_no" placeholder="Registration No" ngModel required #modelReg='ngModel' ngModel [(ngModel)]='registration_no'>
+      <app-customvalidation [displayError]="modelReg.invalid && modelReg.errors.required && 
+      (modelReg.dirty || modelReg.touched && model_form.submitted )" errorMsg="Please enter registration no"></app-customvalidation>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Note:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><textarea type="text" class="form-control" id="note" name="note" placeholder="Enter Note" ngModel required #modelNote='ngModel' ngModel [(ngModel)]='note'></textarea>
+      <app-customvalidation [displayError]="modelNote.invalid && modelNote.errors.required && 
+      (modelNote.dirty || modelNote.touched && model_form.submitted )" errorMsg="Please enter note"></app-customvalidation>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Picture 1:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><input type="file" class="form-control" id="picture1" name="picture1" ngModel required #modelPic1='ngModel' ngModel [(ngModel)]='picture1' (change)="fileChanged1($event)">
+      <app-customvalidation [displayError]="modelPic1.invalid && modelPic1.errors.required && 
+      (modelPic1.dirty || modelPic1.touched && model_form.submitted )" errorMsg="Please select pitcture1"></app-customvalidation>
+    </div>
+    <img src="{{imgUrl1}}" *ngIf="imgHideShow1" style="width:100px"/>
+</div>
+
+<div class="row" style="margin-top:10px">
+    <div class="col-sm-3"><label for="color">Picture 2:<span style="color: red">*</span> </label></div>
+    <div class="col-sm-6"><input type="file" class="form-control" id="picture2"  name="picture2" ngModel required #modelPic2='ngModel' ngModel [(ngModel)]='picture2' (change)="fileChanged2($event)">
+      <app-customvalidation [displayError]="modelPic2.invalid && modelPic2.errors.required && 
+      (modelPic2.dirty || modelPic2.touched && model_form.submitted )" errorMsg="Please select picture2"></app-customvalidation>
+    </div>
+    <img src="{{imgUrl2}}"  *ngIf="imgHideShow2" style="width:100px" />
+</div>
+  <div class="row" style="margin-top:15px">
+  <div class="col-sm-3"></div>
+    <div class="col-sm-3"><button type="submit" class="btn btn-primary" [disabled]="model_form.invalid">Add</button>
+    </div>
+  </div>
+ 
+</form>
